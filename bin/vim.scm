@@ -14,6 +14,18 @@
 
 (define (emit-line s m)
   (let1 v (eval s (find-module m))
+    (and
+      (rxmatch-case (symbol->string s)
+        [ #/^let/ () #t ]
+        [ #/-let1$/ () #t ]
+        [ #/^define/ () #t ]
+        [ #/-let1$/ () #t ]
+        [ #/-case$/ () #t ]
+        [else #f]
+        )
+      (print "set lw+=" s)
+      )
+
     (cond
       [ (procedure? v)
        (format #t "syn keyword schemeExtFunc ~a~%" s)
