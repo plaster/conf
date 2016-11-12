@@ -6,16 +6,16 @@
 
 (define (parse-line line)
   (match (port->sexp-list (open-input-string line))
-    [ (y (m)) (values y m) ]
+    [ (y (m)) (values (symbol->string y) y m) ]
     [else
       (errorf "unknown output: ~s" line)
       ]
     ))
 
-(define (emit-line y m)
+(define (emit-line s y m)
   (let1 v (eval y (find-module m))
     (and
-      (rxmatch-case (symbol->string y)
+      (rxmatch-case s
         [ #/ / () #f ]
         [ #/^let/ () #t ]
         [ #/-let1$/ () #t ]
@@ -28,6 +28,9 @@
       )
 
     (cond
+      [ (#/ / s)
+        ;; do nothing
+        ]
       [ (procedure? v)
        (format #t "syn keyword schemeExtFunc ~a~%" y)
        ]
