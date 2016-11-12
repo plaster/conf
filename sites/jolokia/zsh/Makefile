@@ -1,7 +1,7 @@
 .PHONY: help setup
 
-help: ## show this help
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
+help: ### show this help
+	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
-setup: ## setup .zshrc
+setup: ### setup .zshrc
 	ln -sf $(CURDIR)/zshrc ~/.zshrc
