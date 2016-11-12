@@ -1,6 +1,9 @@
 setopt AUTO_CD
 bindkey -a 'q' push-line
 
+alias n="vim"
+alias ls="ls -la"
+alias dir="ls -la"
 alias s="screen -U"
 alias screen="screen -U"
 alias sl="screen -ls"
