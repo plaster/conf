@@ -22,6 +22,8 @@
         [ #/^define/ () #t ]
         [ #/-let1$/ () #t ]
         [ #/-case$/ () #t ]
+        [ #/-with-/ () #t ]
+        [ #/-lambda$/ () #t]
         [else #f]
         )
       (print "set lw+=" y)
