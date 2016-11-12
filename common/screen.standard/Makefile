@@ -3,8 +3,5 @@
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
-
-setup: ### recursively setup configs
-	make -C vim $@
-	make -C zsh $@
-	make -C screen $@
+setup: ### setup .screenrc
+	ln -sf $(CURDIR)/screenrc ~/.screenrc
