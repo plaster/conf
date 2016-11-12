@@ -5,3 +5,5 @@ help: ## show this help
 
 setup: ## setup .vimrc
 	ln -sf $(CURDIR)/vimrc ~/.vimrc
+	test -d ~/.vim || mkdir ~/.vim
+	ln -sf $(CURDIR)/syntax ~/.vim/syntax
