@@ -2,7 +2,6 @@
 (use util.match)
 
 (print "\"Generated file. Any change will be discarded.")
-(print "se lisp expandtab")
 
 (define (parse-line line)
   (match (port->sexp-list (open-input-string line))
