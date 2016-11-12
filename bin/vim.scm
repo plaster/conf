@@ -14,9 +14,17 @@
 
 (define (emit-line s m)
   (let1 v (eval s (find-module m))
-    (if (procedure? v)
-      (format #t "syn keyword schemeExtFunc ~a~%" s)
-      (format #t "syn keyword schemeExtSyntax ~a~%" s)
+    (cond
+      [ (procedure? v)
+       (format #t "syn keyword schemeExtFunc ~a~%" s)
+       ]
+      [ (or (is-a? v <macro>)
+            (is-a? v <syntax>))
+       (format #t "syn keyword schemeExtSyntax ~a~%" s)
+       ]
+      [else
+        (format #t "syn keyword schemeExtSyntax ~a~%" s)
+        ]
       )))
 
 (call-with-input-string
