@@ -1,3 +1,5 @@
+defencoding utf8
+encoding utf8 utf8
 startup_message off
 vbell off
 caption always "%-w%10L>%{=b bw}%n %t%{-}%+w%-0="
