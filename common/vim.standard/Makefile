@@ -1,9 +1,9 @@
-.PHONY: help setup
+.PHONY: help install
 
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
-setup: ### setup .vimrc
+install: ### setup vim config
 	ln -sf $(CURDIR)/vimrc ~/.vimrc
 	test -d ~/.vim || mkdir ~/.vim
 	ln -snf $(CURDIR)/syntax ~/.vim/syntax

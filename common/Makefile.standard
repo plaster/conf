@@ -1,10 +1,10 @@
-.PHONY: help setup
+.PHONY: help install
 
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
 
-setup: ### recursively setup configs
+install: ### recursively setup configs
 	make -C vim $@
 	make -C zsh $@
 	make -C screen $@
