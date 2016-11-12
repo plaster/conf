@@ -7,3 +7,4 @@ install: ### setup vim config
 	ln -sf $(CURDIR)/vimrc ~/.vimrc
 	test -d ~/.vim || mkdir ~/.vim
 	ln -snf $(CURDIR)/syntax ~/.vim/syntax
+	ln -snf $(CURDIR)/after ~/.vim/after
