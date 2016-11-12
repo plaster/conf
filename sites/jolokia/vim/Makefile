@@ -1,6 +1,6 @@
-.PHONY: default restore
+.PHONY: default setup
 
 default:
 
-restore:
+setup:
 	ln -sf $(CURDIR)/.vimrc ~/.vimrc

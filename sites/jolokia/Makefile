@@ -1,7 +1,7 @@
-.PHONY: default restore
+.PHONY: default setup
 
 default:
 
-restore:
+setup:
 	make -C vim $@
 	make -C zsh $@
