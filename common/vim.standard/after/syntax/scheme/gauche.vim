@@ -5,6 +5,5 @@ se lisp expandtab
 syn region schemeConstant start=+\%(\\\)\@<!#/+ skip=+\\[\\/]+ end=+/+
 syn match schemeSharpBang oneline "#!.*"
 
-command -nargs=+ HiLink hi def link <args>
-HiLink schemeRegexp     schemeString
-HiLink schemeSharpBang  Special
+hi def link schemeRegexp     schemeString
+hi def link schemeSharpBang  Special
