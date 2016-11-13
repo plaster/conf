@@ -1,3 +1,4 @@
+#!/usr/bin/env gosh
 (use gauche.interactive)
 (use util.match)
 
