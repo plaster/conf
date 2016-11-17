@@ -121,12 +121,14 @@
                    (display "." (current-error-port))
                    ) ]
        [ emit-lw (^ (y)
-                 (and (hash-table-get lw?-table y)
+                 (and (hash-table-exists? lw?-table y)
+                      (hash-table-get lw?-table y)
                       (print "set lw+=" y)
                       )
                  ) ]
        [ emit-kw (^ (y)
-                 (if-let1 kw-type (hash-table-get kw-type-table y)
+                 (if-let1 kw-type (and (hash-table-exists? kw-type-table y)
+                                       (hash-table-get kw-type-table y) )
                    (print "syn keyword " kw-type " " y)
                    )
                  ) ]
@@ -143,6 +145,9 @@
                     (port-for-each (.$ store! lw?+kw-type parse-line) (cut read-line iport))
                     ))
                )
+            all-module-names)
+
+  (for-each (^ (mn) (hash-table-put! kw-type-table mn 'schemeExtSyntax) )
             all-module-names)
 
   (newline (current-error-port))
