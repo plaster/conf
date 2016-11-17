@@ -73,10 +73,15 @@
     (let [[ lw?
             (rxmatch-case s
                [ #/^let/ () #t ]
+               [ #/-let$/ () #t ]
+               [ #/-letrec$/ () #t ]
+               [ #/-let\*$/ () #t ]
                [ #/-let1$/ () #t ]
+               [ #/glet\*$/ () #t ]
+               [ #/glet1$/ () #t ]
                [ #/^define/ () #t ]
-               [ #/-let1$/ () #t ]
-               [ #/-case$/ () #t ]
+               [ #/-if$/ () #t ]
+               [ #/rxmatch-case$/ () #t ]
                [ #/-with-/ () #t ]
                [ #/-lambda$/ () #t]
                [else #f]
