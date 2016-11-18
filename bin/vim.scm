@@ -26,9 +26,11 @@
     #/^% /
     ))
 
-(define exclude-module-name-table (alist->hash-table (map (cut cons <> #t) *exclude-module-name-list*) 'eq?))
+(define %list->eq-set (.$ (cut alist->hash-table <> 'eq?)
+                          (map$ (cut cons <> #t)) ))
 
-(define exclude-binding-table (alist->hash-table (map (cut cons <> #t) *exclude-binding-list*) 'eq?))
+(define exclude-module-name-table (%list->eq-set *exclude-module-name-list*))
+(define exclude-binding-table (%list->eq-set *exclude-binding-list*))
 
 (define (exclude-module-name? mn)
   (or
