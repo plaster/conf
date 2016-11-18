@@ -86,6 +86,7 @@
                [ #/rxmatch-case$/ () #t ]
                [ #/-with-/ () #t ]
                [ #/-lambda$/ () #t]
+               [ #/^match$/ () #t]
                [else #f]
                ) ]
           [ v (eval y (find-module m)) ]
