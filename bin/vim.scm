@@ -60,6 +60,7 @@
 
 
 (print "\"Generated file. Any change will be discarded.")
+(print "\"source: https://github.com/plaster/conf/blob/master/bin/vim.scm")
 
 (define (parse-line line)
   (match (port->sexp-list (open-input-string line))
