@@ -50,35 +50,24 @@
 (define %list->eq-set (.$ (cut alist->hash-table <> 'eq?)
                           (map$ (cut cons <> #t)) ))
 
-(define exclude-module-name-table (%list->eq-set *exclude-module-name-list*))
-(define exclude-binding-table (%list->eq-set *exclude-binding-list*))
+(define (%eq-set+rx-list->pred table pat-list)
+  (^y (or (hash-table-exists? table y)
+          (let1 s (symbol->string y)
+            (let loop [[pat-list pat-list]]
+              (match pat-list
+                [ () #f ]
+                [ (pat . pat-list)
+                 (or (pat s)
+                     (loop pat-list)) ]
+                ))))))
 
-(define (exclude-module-name? mn)
-  (or
-    (hash-table-exists? exclude-module-name-table mn)
-    (let1 mn-s (symbol->string mn)
-      (let loop [[ pat-list *exclude-module-name-pat-list* ]]
-        (match pat-list
-          [ () #f ]
-          [ (pat . pat-list)
-           (or (pat mn-s)
-               (loop pat-list))
-           ]
-          )))))
+(define exclude-module-name?
+  (%eq-set+rx-list->pred (%list->eq-set *exclude-module-name-list*)
+                         *exclude-module-name-pat-list*) )
 
-(define (exclude-binding? y)
-  (or
-    (hash-table-exists? exclude-binding-table y)
-    (let1 mn-s (symbol->string y)
-      (let loop [[ pat-list *exclude-binding-pat-list* ]]
-        (match pat-list
-          [ () #f ]
-          [ (pat . pat-list)
-           (or (pat mn-s)
-               (loop pat-list))
-           ]
-          )))))
-
+(define exclude-binding?
+  (%eq-set+rx-list->pred (%list->eq-set *exclude-binding-list*)
+                         *exclude-binding-pat-list*) )
 
 (define (parse-line line)
   (match (port->sexp-list (open-input-string line))
