@@ -123,6 +123,21 @@
                    (hash-table-put! kw-type-table y kw-type)
                    (display "." (current-error-port))
                    ) ]
+       [ exported?$ (^ (mn)
+                       (match ($ module-exports $ find-module mn)
+                         [ #t (^_ #t) ]
+                         [ (and (? pair? ) exl)
+                          (pa$ hash-table-exists?
+                               (%list->eq-set exl))
+                          ]
+                         [ else (^_ #f) ]
+                         )) ]
+
+       [ store!$ (^ (mn)
+                    (let1 exported? (exported?$ mn)
+                      (^ (y lw? kw-type)
+                         (and (exported? y)
+                              (store! y lw? kw-type))))) ]
        [ emit-lw (^ (y)
                  (and (hash-table-exists? lw?-table y)
                       (hash-table-get lw?-table y)
@@ -141,13 +156,16 @@
                (display "o" (current-error-port))
                (eval `(require ,(module-name->path mn))
                      (find-module 'gauche))
-               (call-with-input-string
-                 (with-output-to-string
-                   (^ () (apropos #// mn)))
-                 (^ (iport)
-                    (port-for-each (.$ store! lw?+kw-type parse-line) (cut read-line iport))
-                    ))
-               )
+               (let1 store! (store!$ mn)
+                 (call-with-input-string
+                   (with-output-to-string
+                     (^ () (apropos #// mn)))
+                   (^ (iport)
+                      (port-for-each
+                        (.$ store! lw?+kw-type parse-line)
+                        (cut read-line iport))
+                      ))
+                 ) )
             all-module-names)
 
   (for-each (^ (mn) (hash-table-put! kw-type-table mn 'schemeExtSyntax) )
