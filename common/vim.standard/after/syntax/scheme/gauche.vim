@@ -1,4 +1,5 @@
 se lisp expandtab
+se nosmartindent
 
 "se iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
 se  iskeyword=33,35-38,42-43,45-58,60-90,94,95,97-122,126,_
