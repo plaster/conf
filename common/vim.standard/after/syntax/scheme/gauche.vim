@@ -19,5 +19,7 @@ syn region schemeStrucRestricted matchgroup=Delimiter start="#s16(" matchgroup=D
 syn region schemeStrucRestricted matchgroup=Delimiter start="#s32(" matchgroup=Delimiter end=")" contains=ALLBUT,schemeStruc,schemeSyntax,schemeFunc
 syn region schemeStrucRestricted matchgroup=Delimiter start="#s64(" matchgroup=Delimiter end=")" contains=ALLBUT,schemeStruc,schemeSyntax,schemeFunc
 
+syntax region schemeMultilineComment start=/#|/ end=/|#/ contains=@Spell,schemeMultilineComment
+
 hi def link schemeRegexp     schemeString
 hi def link schemeSharpBang  Special
