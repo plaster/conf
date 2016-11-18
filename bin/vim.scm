@@ -1,4 +1,14 @@
 #!/usr/bin/env gosh
+
+;                                    CC0
+;
+; To the extent possible under law, Haruka Kai has waived all copyright and
+; related or neighboring rights to this syntax file generator.
+; This work is published from: Japan.
+;
+; https://creativecommons.org/publicdomain/zero/1.0/deed
+
+
 (use gauche.interactive)
 (use util.match)
 
