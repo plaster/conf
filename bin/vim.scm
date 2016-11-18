@@ -23,7 +23,7 @@
 (define *exclude-binding-pat-list*
   '(
     #/ /
-    #/^% /
+    #/^%/
     ))
 
 (define %list->eq-set (.$ (cut alist->hash-table <> 'eq?)
