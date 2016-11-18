@@ -26,6 +26,17 @@
     #/^%/
     ))
 
+(define *headertext* #`"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"
+ GENERATED FILE. ANY CHANGE WILL BE DISCARDED.
+
+ Generator: https://github.com/plaster/conf/blob/master/bin/vim.scm
+ Environment:
+  (gauche-version) ==> ,(gauche-version)
+  (now) ==> ,($ sys-strftime \"%Y-%m-%d %H:%M:%S\" $ sys-localtime $ sys-time)
+
+\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+)
+
 (define %list->eq-set (.$ (cut alist->hash-table <> 'eq?)
                           (map$ (cut cons <> #t)) ))
 
@@ -58,9 +69,6 @@
            ]
           )))))
 
-
-(print "\"Generated file. Any change will be discarded.")
-(print "\"source: https://github.com/plaster/conf/blob/master/bin/vim.scm")
 
 (define (parse-line line)
   (match (port->sexp-list (open-input-string line))
@@ -174,6 +182,9 @@
 
   (newline (current-error-port))
   (display "emitting " (current-error-port))
+  ($ for-each (pa$ print "\"")
+     $ string-split *headertext* #\newline
+     )
   (for-each emit-lw (sort (hash-table-keys kw-type-table)))
   (for-each emit-kw (sort (hash-table-keys kw-type-table)))
   (newline (current-error-port))
