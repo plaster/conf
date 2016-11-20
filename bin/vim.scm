@@ -102,14 +102,14 @@
       (let [[ kw-type
               (cond
                 [ (procedure? v)
-                 'schemeExtFunc
+                 'schemeFunc
                  ]
                 [ (or (is-a? v <macro>)
                       (is-a? v <syntax>))
-                 'schemeExtSyntax
+                 'schemeSyntax
                  ]
                 [else
-                  'schemeExtSyntax
+                  'schemeSyntax
                   ]
                 ) ]
             ]
