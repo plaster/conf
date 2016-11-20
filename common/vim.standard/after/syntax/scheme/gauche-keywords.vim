@@ -4,7 +4,7 @@
 " Generator: https://github.com/plaster/conf/blob/master/bin/vim.scm
 " Environment:
 "  (gauche-version) ==> 0.9.5
-"  (now) ==> 2016-11-21 00:52:54
+"  (now) ==> 2016-11-21 01:49:21
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set lw+=and-let*
@@ -42,6 +42,7 @@ set lw+=define-cproc
 set lw+=define-dict-interface
 set lw+=define-fstruct-type
 set lw+=define-generic
+set lw+=define-http-handler
 set lw+=define-in-module
 set lw+=define-inline
 set lw+=define-library
@@ -69,6 +70,7 @@ set lw+=let-args
 set lw+=let-keywords
 set lw+=let-keywords*
 set lw+=let-optionals*
+set lw+=let-params
 set lw+=let-string-start+end
 set lw+=let-syntax
 set lw+=let-values
@@ -393,6 +395,7 @@ syn keyword schemeSyntax <regexp>
 syn keyword schemeSyntax <regmatch-meta>
 syn keyword schemeSyntax <regmatch>
 syn keyword schemeSyntax <relation>
+syn keyword schemeSyntax <request-error>
 syn keyword schemeSyntax <rfc822-parse-error>
 syn keyword schemeSyntax <s16array>
 syn keyword schemeSyntax <s16vector-meta>
@@ -1158,15 +1161,19 @@ syn keyword schemeSyntax _POSIX_VDISABLE
 syn keyword schemeFunc abandoned-mutex-exception?
 syn keyword schemeFunc abs
 syn keyword schemeFunc absolute-path?
+syn keyword schemeSyntax access-log
+syn keyword schemeSyntax access-log-drain
 syn keyword schemeFunc acons
 syn keyword schemeFunc acos
 syn keyword schemeFunc acosh
 syn keyword schemeFunc add-duration
 syn keyword schemeFunc add-duration!
 syn keyword schemeFunc add-hook!
+syn keyword schemeFunc add-http-handler!
 syn keyword schemeFunc add-job!
 syn keyword schemeSyntax add-load-path
 syn keyword schemeFunc add-method!
+syn keyword schemeFunc add-method-dispatcher!
 syn keyword schemeSyntax address-family
 syn keyword schemeSyntax address-info
 syn keyword schemeFunc alist->bag
@@ -1541,11 +1548,13 @@ syn keyword schemeFunc cf-try-compile-and-link
 syn keyword schemeFunc cgi-add-temporary-file
 syn keyword schemeFunc cgi-get-metavariable
 syn keyword schemeFunc cgi-get-parameter
+syn keyword schemeFunc cgi-handler
 syn keyword schemeFunc cgi-header
 syn keyword schemeFunc cgi-main
 syn keyword schemeSyntax cgi-metavariables
 syn keyword schemeSyntax cgi-output-character-encoding
 syn keyword schemeFunc cgi-parse-parameters
+syn keyword schemeFunc cgi-script
 syn keyword schemeSyntax cgi-temporary-files
 syn keyword schemeFunc change-class
 syn keyword schemeFunc change-object-class
@@ -1740,6 +1749,7 @@ syn keyword schemeFunc condition-variable-specific
 syn keyword schemeFunc condition-variable-specific-set!
 syn keyword schemeFunc condition-variable?
 syn keyword schemeFunc condition?
+syn keyword schemeFunc connect-dispatcher
 syn keyword schemeFunc cons
 syn keyword schemeFunc cons*
 syn keyword schemeFunc console-device
@@ -1888,6 +1898,7 @@ syn keyword schemeSyntax define-cproc
 syn keyword schemeSyntax define-dict-interface
 syn keyword schemeSyntax define-fstruct-type
 syn keyword schemeSyntax define-generic
+syn keyword schemeSyntax define-http-handler
 syn keyword schemeSyntax define-in-module
 syn keyword schemeSyntax define-inline
 syn keyword schemeSyntax define-library
@@ -1968,6 +1979,7 @@ syn keyword schemeSyntax do
 syn keyword schemeSyntax do-ec
 syn keyword schemeSyntax do-ec:do
 syn keyword schemeSyntax do-generator
+syn keyword schemeSyntax document-root
 syn keyword schemeSyntax dolist
 syn keyword schemeSyntax dotimes
 syn keyword schemeFunc dotted-list?
@@ -2011,6 +2023,8 @@ syn keyword schemeFunc eqv-hash
 syn keyword schemeFunc eqv?
 syn keyword schemeSyntax er-macro-transformer
 syn keyword schemeFunc error
+syn keyword schemeSyntax error-log
+syn keyword schemeSyntax error-log-drain
 syn keyword schemeFunc error-object-irritants
 syn keyword schemeFunc error-object-message
 syn keyword schemeFunc error-object?
@@ -2156,6 +2170,7 @@ syn keyword schemeFunc file-filter-fold
 syn keyword schemeFunc file-filter-for-each
 syn keyword schemeFunc file-filter-map
 syn keyword schemeFunc file-gid
+syn keyword schemeFunc file-handler
 syn keyword schemeFunc file-ino
 syn keyword schemeFunc file-is-directory?
 syn keyword schemeFunc file-is-executable?
@@ -2163,6 +2178,7 @@ syn keyword schemeFunc file-is-readable?
 syn keyword schemeFunc file-is-regular?
 syn keyword schemeFunc file-is-symlink?
 syn keyword schemeFunc file-is-writable?
+syn keyword schemeSyntax file-mime-type
 syn keyword schemeFunc file-mode
 syn keyword schemeFunc file-mtime
 syn keyword schemeFunc file-mtime<=?
@@ -2667,6 +2683,7 @@ syn keyword schemeSyntax http-proxy
 syn keyword schemeFunc http-put
 syn keyword schemeFunc http-request
 syn keyword schemeFunc http-secure-connection-available?
+syn keyword schemeSyntax http-server-software
 syn keyword schemeFunc http-status-code->description
 syn keyword schemeFunc http-string-receiver
 syn keyword schemeFunc http-string-sender
@@ -2876,6 +2893,7 @@ syn keyword schemeSyntax let-args
 syn keyword schemeSyntax let-keywords
 syn keyword schemeSyntax let-keywords*
 syn keyword schemeSyntax let-optionals*
+syn keyword schemeSyntax let-params
 syn keyword schemeSyntax let-string-start+end
 syn keyword schemeSyntax let-syntax
 syn keyword schemeSyntax let-values
@@ -3107,6 +3125,7 @@ syn keyword schemeFunc make-s64vector
 syn keyword schemeFunc make-s8array
 syn keyword schemeFunc make-s8vector
 syn keyword schemeFunc make-selecting-comparator
+syn keyword schemeFunc make-server-control-channel
 syn keyword schemeFunc make-server-socket
 syn keyword schemeFunc make-server-sockets
 syn keyword schemeFunc make-sockaddrs
@@ -3152,6 +3171,9 @@ syn keyword schemeFunc make<?
 syn keyword schemeFunc make=?
 syn keyword schemeFunc make>=?
 syn keyword schemeFunc make>?
+syn keyword schemeExtSyntax makiki
+syn keyword schemeExtSyntax makiki.cgi
+syn keyword schemeExtSyntax makiki.connect
 syn keyword schemeFunc map
 syn keyword schemeFunc map!
 syn keyword schemeFunc map$
@@ -3622,6 +3644,7 @@ syn keyword schemeFunc read-list
 syn keyword schemeFunc read-reference-has-value?
 syn keyword schemeFunc read-reference-value
 syn keyword schemeFunc read-reference?
+syn keyword schemeFunc read-request-body
 syn keyword schemeFunc read-s16
 syn keyword schemeFunc read-s32
 syn keyword schemeFunc read-s64
@@ -3718,6 +3741,29 @@ syn keyword schemeFunc replace-range
 syn keyword schemeFunc report-error
 syn keyword schemeFunc report-mixin-condition
 syn keyword schemeFunc report-time-results
+syn keyword schemeFunc request-cookie-ref
+syn keyword schemeFunc request-cookies
+syn keyword schemeFunc request-error
+syn keyword schemeFunc request-guard-value
+syn keyword schemeFunc request-header-ref
+syn keyword schemeFunc request-headers
+syn keyword schemeFunc request-http-version
+syn keyword schemeFunc request-iport
+syn keyword schemeFunc request-line
+syn keyword schemeFunc request-method
+syn keyword schemeFunc request-oport
+syn keyword schemeFunc request-param-ref
+syn keyword schemeFunc request-params
+syn keyword schemeFunc request-path
+syn keyword schemeFunc request-path-rxmatch
+syn keyword schemeFunc request-query
+syn keyword schemeFunc request-remote-addr
+syn keyword schemeFunc request-response-error
+syn keyword schemeFunc request-server-host
+syn keyword schemeFunc request-server-port
+syn keyword schemeFunc request-socket
+syn keyword schemeFunc request-uri
+syn keyword schemeFunc request?
 syn keyword schemeSyntax require
 syn keyword schemeSyntax require-extension
 syn keyword schemeSyntax reset
@@ -3727,6 +3773,14 @@ syn keyword schemeFunc reset-http-connection
 syn keyword schemeFunc reset-primes
 syn keyword schemeFunc reset-terminal
 syn keyword schemeFunc resolve-path
+syn keyword schemeFunc respond/ng
+syn keyword schemeFunc respond/ok
+syn keyword schemeFunc respond/redirect
+syn keyword schemeFunc response-cookie-add!
+syn keyword schemeFunc response-cookie-delete!
+syn keyword schemeFunc response-header-delete!
+syn keyword schemeFunc response-header-push!
+syn keyword schemeFunc response-header-replace!
 syn keyword schemeSyntax return-failure/compound
 syn keyword schemeSyntax return-failure/expect
 syn keyword schemeSyntax return-failure/message
@@ -4299,6 +4353,7 @@ syn keyword schemeFunc stacked-map-push!
 syn keyword schemeFunc standard-error-port
 syn keyword schemeFunc standard-input-port
 syn keyword schemeFunc standard-output-port
+syn keyword schemeFunc start-http-server
 syn keyword schemeFunc store-bundle!
 syn keyword schemeFunc stream
 syn keyword schemeFunc stream->list
@@ -4871,6 +4926,7 @@ syn keyword schemeFunc tanh
 syn keyword schemeSyntax temporary-directory
 syn keyword schemeFunc tenth
 syn keyword schemeFunc terminate-all!
+syn keyword schemeFunc terminate-server-loop
 syn keyword schemeFunc terminated-thread-exception?
 syn keyword schemeFunc test
 syn keyword schemeSyntax test*
@@ -5358,6 +5414,7 @@ syn keyword schemeFunc with-character-attribute
 syn keyword schemeFunc with-error-handler
 syn keyword schemeFunc with-error-to-port
 syn keyword schemeFunc with-exception-handler
+syn keyword schemeFunc with-header-handler
 syn keyword schemeFunc with-input-conversion
 syn keyword schemeFunc with-input-from-file
 syn keyword schemeFunc with-input-from-port
@@ -5374,6 +5431,7 @@ syn keyword schemeFunc with-output-to-process
 syn keyword schemeFunc with-output-to-string
 syn keyword schemeFunc with-port-locking
 syn keyword schemeFunc with-ports
+syn keyword schemeFunc with-post-parameters
 syn keyword schemeFunc with-profiler
 syn keyword schemeFunc with-random-data-seed
 syn keyword schemeSyntax with-signal-handlers
