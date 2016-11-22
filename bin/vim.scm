@@ -149,7 +149,7 @@
        [ emit-lw (^ (y)
                  (and (hash-table-exists? lw?-table y)
                       (hash-table-get lw?-table y)
-                      (print "set lw+=" y)
+                      (print "setlocal lw+=" y)
                       )
                  ) ]
        [ emit-kw (^ (y)
