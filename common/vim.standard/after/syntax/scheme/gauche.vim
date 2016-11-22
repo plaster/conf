@@ -1,8 +1,8 @@
-se lisp expandtab
-se nosmartindent
+setlocal lisp expandtab
+setlocal nosmartindent
 
-"se iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
-se  iskeyword=33,35-38,42-43,45-58,60-90,94,95,97-122,126,_
+"setlocal iskeyword=33,35-39,42-58,60-90,94,95,97-122,126,_
+setlocal  iskeyword=33,35-38,42-43,45-58,60-90,94,95,97-122,126,_
 
 " Thanks to ayamada:
 "   https://github.com/ayamada/copy-of-svn.tir.jp/blob/master/nekoie/scripts/scheme.vim
