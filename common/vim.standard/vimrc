@@ -3,3 +3,4 @@ set autoindent smartindent
 set tabstop=4 shiftwidth=4
 set showcmd
 set incsearch hlsearch
+set modeline
