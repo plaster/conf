@@ -5,9 +5,8 @@ alias n="vim"
 alias V="/usr/share/vim/vim74/macros/less.sh"
 alias ls="ls -la"
 alias dir="ls -la"
-alias s="screen -U"
+alias s="screen"
 alias l="less"
-alias screen="screen -U"
 alias sl="screen -ls"
 
 PROMPT_SYM_COLOR=green
