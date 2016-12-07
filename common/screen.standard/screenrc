@@ -3,8 +3,6 @@ vbell off
 caption always "%-w%10L>%{=b bw}%n %t%{-}%+w%-0="
 hardstatus alwayslastline "%H%=%Y/%m/%d %02c"
 
-## http://frexx.de/xterm-256-notes/
-# erase background with current bg color
-defbce on
-# do not use 'screen-bce'
-term xterm-256color
+# http://www.robmeerman.co.uk/unix/256colours#run-time_configuration
+attrcolor b ".I"
+termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'

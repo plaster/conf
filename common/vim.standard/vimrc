@@ -4,4 +4,9 @@ set tabstop=4 shiftwidth=4
 set showcmd
 set incsearch hlsearch
 set modeline
-colorscheme zenburn
+colorscheme molokai
+
+" http://www.robmeerman.co.uk/unix/256colours#vim_under_screen_refuses_to_conform
+if match($TERMCAP, 'Co#256:') == 0 || match($TERMCAP, ':Co#256:') > 0
+	set t_Co=256
+endif

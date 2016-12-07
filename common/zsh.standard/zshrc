@@ -31,3 +31,13 @@ $PROMPT_UTYPE "
 export LANG=ja_JP.UTF-8
 export LC_MESSAGES=en_US.UTF-8
 export LC_TIME=en_US.UTF-8
+
+# http://www.robmeerman.co.uk/unix/256colours#making_the_termcap_mangling_automatic
+if [ "$TERM" = "screen" ]
+then
+	[ -z "$TERMCAP" ] ||
+		export TERMCAP=$(echo $TERMCAP | sed -e 's/Co#8/Co#256/g')
+elif [ "$TERM" = "xterm" ]
+then
+	export TERM=xterm-256color
+fi
