@@ -1,4 +1,4 @@
-.PHONY: help install
+.PHONY: help install always
 
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
@@ -20,7 +20,7 @@ $(VIMDIR):
 $(COLORSDIR): $(VIMDIR)
 	test -d $@ || mkdir $@
 $(COLORSDIR)/molokai.vim: $(COLORSDIR)
-	wget -q -O $@ https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+	wget -q -O $@ 'https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
 $(COLORSDIR)/zenburn.vim: $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
 
@@ -33,9 +33,9 @@ $(AFTERSYNTAXDIR): $(AFTERDIR)
 	test -d $@ || mkdir $@
 $(AFTERSYNTAXSCHEMEDIR): $(AFTERSYNTAXDIR)
 	test -d $@ || mkdir $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: $(AFTERSYNTAXSCHEMEDIR)
+$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: $(AFTERSYNTAXSCHEMEDIR) always
 	ln -sf $(CURDIR)/after/syntax/gauche.vim $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: $(AFTERSYNTAXSCHEMEDIR)
+$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: $(AFTERSYNTAXSCHEMEDIR) always
 	ln -sf $(CURDIR)/after/syntax/gauche-keywords.vim $@
 
 FILES=\
