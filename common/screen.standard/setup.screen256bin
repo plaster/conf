@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+WORKDIR="/root/src/screen256"
+SOURCEDIR="screen-4.4.0"
+INSTALLDIR="/opt/screen256"
+
+test -d "$WORKDIR" || mkdir -p "$WORKDIR"
+cd "$WORKDIR"
+
+apt-get source screen
+cd "$SOURCEDIR"
+./configure "--prefix=$INSTALLDIR" --enable-colors256
+make
+make install
