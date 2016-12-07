@@ -17,27 +17,36 @@ $(VIMRC):
 $(VIMDIR):
 	test -d $@ || mkdir $@
 
-$(COLORSDIR): $(VIMDIR)
+$(COLORSDIR):
+	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
-$(COLORSDIR)/molokai.vim: $(COLORSDIR)
+$(COLORSDIR)/molokai.vim:
+	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
-$(COLORSDIR)/mirodark.vim: $(COLORSDIR)
+$(COLORSDIR)/mirodark.vim:
+	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'https://github.com/djjcast/mirodark/raw/master/colors/mirodark.vim'
-$(COLORSDIR)/zenburn.vim: $(COLORSDIR)
+$(COLORSDIR)/zenburn.vim:
+	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
 
 $(SYNTAXDIR): $(VIMDIR)
 	test -d $@ || mkdir $@
 
-$(AFTERDIR): $(VIMDIR)
+$(AFTERDIR):
+	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
-$(AFTERSYNTAXDIR): $(AFTERDIR)
+$(AFTERSYNTAXDIR):
+	$(MAKE) $(AFTERDIR)
 	test -d $@ || mkdir $@
-$(AFTERSYNTAXSCHEMEDIR): $(AFTERSYNTAXDIR)
+$(AFTERSYNTAXSCHEMEDIR):
+	$(MAKE) $(AFTERSYNTAXDIR)
 	test -d $@ || mkdir $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: $(AFTERSYNTAXSCHEMEDIR) always
+$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: always
+	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche.vim $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: $(AFTERSYNTAXSCHEMEDIR) always
+$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: always
+	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
 
 FILES=\
