@@ -30,7 +30,8 @@ $(COLORSDIR)/zenburn.vim:
 	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
 
-$(SYNTAXDIR): $(VIMDIR)
+$(SYNTAXDIR):
+	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
 
 $(AFTERDIR):
