@@ -21,6 +21,8 @@ $(COLORSDIR): $(VIMDIR)
 	test -d $@ || mkdir $@
 $(COLORSDIR)/molokai.vim: $(COLORSDIR)
 	wget -q -O $@ https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
+$(COLORSDIR)/zenburn.vim: $(COLORSDIR)
+	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
 
 $(SYNTAXDIR): $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -39,6 +41,7 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: $(AFTERSYNTAXSCHEMEDIR)
 FILES=\
 	  $(VIMRC) \
 	  $(COLORSDIR)/molokai.vim \
+	  $(COLORSDIR)/zenburn.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
 
