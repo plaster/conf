@@ -36,9 +36,9 @@ $(AFTERSYNTAXDIR): $(AFTERDIR)
 $(AFTERSYNTAXSCHEMEDIR): $(AFTERSYNTAXDIR)
 	test -d $@ || mkdir $@
 $(AFTERSYNTAXSCHEMEDIR)/gauche.vim: $(AFTERSYNTAXSCHEMEDIR) always
-	ln -sf $(CURDIR)/after/syntax/gauche.vim $@
+	ln -sf $(CURDIR)/after/syntax/scheme/gauche.vim $@
 $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: $(AFTERSYNTAXSCHEMEDIR) always
-	ln -sf $(CURDIR)/after/syntax/gauche-keywords.vim $@
+	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
 
 FILES=\
 	  $(VIMRC) \
