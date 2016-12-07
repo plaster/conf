@@ -20,6 +20,9 @@ $(VIMDIR):
 $(COLORSDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
+$(COLORSDIR)/jellybeans.vim:
+	$(MAKE) $(COLORSDIR)
+	wget -q -O $@ 'https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim'
 $(COLORSDIR)/molokai.vim:
 	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
@@ -52,6 +55,7 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: always
 
 FILES=\
 	  $(VIMRC) \
+	  $(COLORSDIR)/jellybeans.vim \
 	  $(COLORSDIR)/molokai.vim \
 	  $(COLORSDIR)/mirodark.vim \
 	  $(COLORSDIR)/zenburn.vim \
