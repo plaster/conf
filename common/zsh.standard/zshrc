@@ -9,28 +9,33 @@ alias s="screen"
 alias l="less"
 alias sl="screen -ls"
 
+
+PROMPT_RESULTOK_COLOR=174
+PROMPT_RESULTNG_COLOR=196
+
+PROMPT_SYM_COLOR=green
+PROMPT_HOST_COLOR=white
+PROMPT_USER_COLOR=white
+PROMPT_PWD_COLOR=white
+if [ X0 = "X$(id -u)" ]
+then
+	PROMPT_SYM_COLOR=white
+	PROMPT_HOST_COLOR=yellow
+	PROMPT_USER_COLOR=yellow
+	PROMPT_PWD_COLOR=yellow
+fi
+
 if [ -r ~/.zshrc-prompt-color ]
 then
 	. ~/.zshrc-prompt-color
-else
-	PROMPT_SYM_COLOR=green
-	PROMPT_HOST_COLOR=white
-	PROMPT_USER_COLOR=white
-	PROMPT_PWD_COLOR=white
-	if [ X0 = "X$(id -u)" ]
-	then
-		PROMPT_SYM_COLOR=white
-		PROMPT_HOST_COLOR=yellow
-		PROMPT_USER_COLOR=yellow
-		PROMPT_PWD_COLOR=yellow
-	fi
 fi
 
+PROMPT_RESULT="%(?.%{%F{$PROMPT_RESULTOK_COLOR}%}Jﾚ╹ヮ╹Jしっ%{%f%}.%{%F{$PROMPT_RESULTNG_COLOR}%}Jﾚ>ヮ<Jしっ%{%f%})"
 PROMPT_HOST="%{%F{$PROMPT_HOST_COLOR}%}%m%{%f%}"
 PROMPT_PWD="%{%F{$PROMPT_PWD_COLOR}%}%~%{%f%}"
 PROMPT_USER="%{%F{$PROMPT_USER_COLOR}%}%n%{%f%}"
 PROMPT_UTYPE="%{%F{$PROMPT_SYM_COLOR}%}%#%{%f%}"
-PROMPT="%{%F{$PROMPT_SYM_COLOR}%}[%{%f%} $PROMPT_USER%{%F{$PROMPT_SYM_COLOR}%}@%{%f%}$PROMPT_HOST%{%F{$PROMPT_SYM_COLOR}%}:%{%f%}$PROMPT_PWD %{%F{$PROMPT_SYM_COLOR}%}]%{%f%}
+PROMPT="$PROMPT_RESULT %{%F{$PROMPT_SYM_COLOR}%}[%{%f%} $PROMPT_USER%{%F{$PROMPT_SYM_COLOR}%}@%{%f%}$PROMPT_HOST%{%F{$PROMPT_SYM_COLOR}%}:%{%f%}$PROMPT_PWD %{%F{$PROMPT_SYM_COLOR}%}]%{%f%}
 $PROMPT_UTYPE "
 
 export LANG=ja_JP.UTF-8
