@@ -9,9 +9,9 @@ alias s="screen"
 alias l="less"
 alias sl="screen -ls"
 
-if [ -r ./zshrc-prompt-color ]
+if [ -r ~/.zshrc-prompt-color ]
 then
-	. ./zshrc-prompt-color
+	. ~/.zshrc-prompt-color
 else
 	PROMPT_SYM_COLOR=green
 	PROMPT_HOST_COLOR=white
