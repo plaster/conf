@@ -1,11 +1,9 @@
-.PHONY: help install
+.PHONY: help install always
 
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
 
-install: ### recursively setup configs
-	make -C vim $@
-	make -C zsh $@
-	make -C screen $@
-	make -C sitelocal $@
+FILES=
+
+install: $(FILES) ### setup sitelocal files
