@@ -11,7 +11,7 @@ AFTERDIR=$(VIMDIR)/after
 AFTERSYNTAXDIR=$(AFTERDIR)/syntax
 AFTERSYNTAXSCHEMEDIR=$(AFTERSYNTAXDIR)/scheme
 
-$(VIMRC):
+$(VIMRC): always
 	ln -sf $(CURDIR)/vimrc $@
 
 $(VIMDIR):
