@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+PROGRAM="$0"
+
+usage_and_exit() {
+	cat <<EOF
+usage:
+	$PROGRAM <site-name> [<base>]
+EOF
+	exit 1
+}
+
+abort() {
+	echo 1>&2 "$@"
+	exit 1
+}
+
+NEWSITENAME="$1"
+BASE="$2"
+
+[ "X$NEWSITENAME" != X ] || usage_and_exit
+[ "X$BASE" != X ] || BASE=_base
+
+[ ! -e "$NEWSITENAME" ] || abort "already exists: $NEWSITENAME"
+[ -d "$BASE" ] || abort "base $BASE is invalid. must be an existing directory."
+
+cp -r "$BASE" "$NEWSITENAME"
+echo "OK"
