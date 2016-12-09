@@ -4,7 +4,8 @@ PROMPT_HOST_BEGIN='%{%F{white}%}'
 PROMPT_HOST_END='%{%f%}'
 PROMPT_USER_BEGIN='%{%F{white}%}'
 PROMPT_USER_END='%{%f%}'
-PROMPT_PWD_COLOR=white
+PROMPT_PWD_BEGIN='%{%F{white}%}'
+PROMPT_PWD_END='%{%f%}'
 if [ X0 = "X$(id -u)" ]
 then
 	PROMPT_SYM_COLOR=white
