@@ -18,17 +18,17 @@ PROMPT_RESULTOK_END='%{%f%}'
 PROMPT_RESULTNG_BEGIN='%{%F{red}%}'
 PROMPT_RESULTNG_END='%{%f%}'
 
-PROMPT_SYM_BEGIN='%{%F{green}%}'
+PROMPT_SYM_BEGIN='%{%F{white}%}'
 PROMPT_SYM_END='%{%f%}'
-PROMPT_HOST_BEGIN='%{%F{white}%}'
+PROMPT_HOST_BEGIN='%{%F{green}%}'
 PROMPT_HOST_END='%{%f%}'
-PROMPT_USER_BEGIN='%{%F{white}%}'
+PROMPT_USER_BEGIN='%{%F{green}%}'
 PROMPT_USER_END='%{%f%}'
-PROMPT_PWD_BEGIN='%{%F{white}%}'
+PROMPT_PWD_BEGIN='%{%F{green}%}'
 PROMPT_PWD_END='%{%f%}'
 if [ X0 = "X$(id -u)" ]
 then
-	PROMPT_SYM_BEGIN='%{%K{green}%}'
+	PROMPT_SYM_BEGIN='%{%K{white}%}'
 	PROMPT_SYM_END='%{%k%}'
 fi
 
