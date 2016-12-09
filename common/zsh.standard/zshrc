@@ -28,10 +28,8 @@ PROMPT_PWD_BEGIN='%{%F{white}%}'
 PROMPT_PWD_END='%{%f%}'
 if [ X0 = "X$(id -u)" ]
 then
-	PROMPT_SYM_COLOR=white
-	PROMPT_HOST_COLOR=yellow
-	PROMPT_USER_COLOR=yellow
-	PROMPT_PWD_COLOR=yellow
+	PROMPT_SYM_BEGIN='%{%K{green}%}'
+	PROMPT_SYM_END='%{%k%}'
 fi
 
 if [ -r ~/.zshrc-prompt-color ]
