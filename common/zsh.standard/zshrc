@@ -10,8 +10,8 @@ alias l="less"
 alias sl="screen -ls"
 
 
-PROMPT_RESULTOK_TEXT='Jﾚ╹ヮ╹Jしっ'
-PROMPT_RESULTNG_TEXT='Jﾚ>ヮ<Jしっ'
+PROMPT_RESULTOK_TEXT='ル╹ヮ╹ルɔ'
+PROMPT_RESULTNG_TEXT='ル>﹏<ルɔ'
 
 PROMPT_RESULTOK_BEGIN='%{%F{green}%}'
 PROMPT_RESULTOK_END='%{%f%}'
