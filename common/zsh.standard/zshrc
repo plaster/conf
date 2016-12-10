@@ -9,6 +9,11 @@ alias s="screen"
 alias l="less"
 alias sl="screen -ls"
 
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt hist_ignore_dups
+setopt share_history
 
 PROMPT_RESULTOK_TEXT='ル╹ヮ╹ルɔ'
 PROMPT_RESULTNG_TEXT='ル>﹏<ルɔ'
