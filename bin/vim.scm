@@ -95,6 +95,7 @@
                [ #/-with-/ () #t ]
                [ #/-lambda$/ () #t ]
                [ #/^match$/ () #t ]
+               [ #/^use$/ () #t ]
                [ else #f ]
                ) ]
           [ v (eval y (find-module m)) ]
