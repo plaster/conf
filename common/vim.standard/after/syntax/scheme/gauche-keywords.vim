@@ -4,7 +4,7 @@
 " Generator: https://github.com/plaster/conf/blob/master/bin/vim.scm
 " Environment:
 "  (gauche-version) ==> 0.9.5
-"  (now) ==> 2016-11-23 03:48:44
+"  (now) ==> 2016-12-12 00:33:57
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 setlocal lw+=and-let*
@@ -96,6 +96,7 @@ setlocal lw+=rxmatch-if
 setlocal lw+=rxmatch-let
 setlocal lw+=srfi-42-let
 setlocal lw+=trie-with-keys
+setlocal lw+=use
 setlocal lw+=vector-for-each-with-index
 setlocal lw+=vector-map-with-index
 setlocal lw+=vector-map-with-index!
@@ -274,6 +275,7 @@ syn keyword schemeSyntax <dbi-result-set>
 syn keyword schemeSyntax <dbi-unsupported-error>
 syn keyword schemeSyntax <dbm-meta>
 syn keyword schemeSyntax <dbm>
+syn keyword schemeSyntax <deflating-port>
 syn keyword schemeSyntax <dictionary>
 syn keyword schemeSyntax <dlobj>
 syn keyword schemeSyntax <eof-object>
@@ -305,6 +307,7 @@ syn keyword schemeSyntax <identifier>
 syn keyword schemeSyntax <ideque>
 syn keyword schemeSyntax <imap-meta>
 syn keyword schemeSyntax <imap>
+syn keyword schemeSyntax <inflating-port>
 syn keyword schemeSyntax <integer-meta>
 syn keyword schemeSyntax <integer>
 syn keyword schemeSyntax <io-closed-error>
@@ -529,6 +532,12 @@ syn keyword schemeSyntax <windows-console>
 syn keyword schemeSyntax <write-controls-meta>
 syn keyword schemeSyntax <write-controls>
 syn keyword schemeSyntax <write-state>
+syn keyword schemeSyntax <zlib-data-error>
+syn keyword schemeSyntax <zlib-error>
+syn keyword schemeSyntax <zlib-memory-error>
+syn keyword schemeSyntax <zlib-need-dict-error>
+syn keyword schemeSyntax <zlib-stream-error>
+syn keyword schemeSyntax <zlib-version-error>
 syn keyword schemeFunc =
 syn keyword schemeSyntax =>
 syn keyword schemeFunc =?
@@ -1128,6 +1137,19 @@ syn keyword schemeSyntax VTIME
 syn keyword schemeSyntax W_OK
 syn keyword schemeSyntax XCASE
 syn keyword schemeSyntax X_OK
+syn keyword schemeSyntax Z_ASCII
+syn keyword schemeSyntax Z_BEST_COMPRESSION
+syn keyword schemeSyntax Z_BEST_SPEED
+syn keyword schemeSyntax Z_BINARY
+syn keyword schemeSyntax Z_DEFAULT_COMPRESSION
+syn keyword schemeSyntax Z_DEFAULT_STRATEGY
+syn keyword schemeSyntax Z_FILTERED
+syn keyword schemeSyntax Z_FIXED
+syn keyword schemeSyntax Z_HUFFMAN_ONLY
+syn keyword schemeSyntax Z_NO_COMPRESSION
+syn keyword schemeSyntax Z_RLE
+syn keyword schemeSyntax Z_TEXT
+syn keyword schemeSyntax Z_UNKNOWN
 syn keyword schemeSyntax ^
 syn keyword schemeSyntax ^-generator
 syn keyword schemeSyntax ^_
@@ -1176,6 +1198,7 @@ syn keyword schemeFunc add-method!
 syn keyword schemeFunc add-method-dispatcher!
 syn keyword schemeSyntax address-family
 syn keyword schemeSyntax address-info
+syn keyword schemeFunc adler32
 syn keyword schemeFunc alist->bag
 syn keyword schemeFunc alist->hash-table
 syn keyword schemeFunc alist->imap
@@ -1774,6 +1797,7 @@ syn keyword schemeFunc count
 syn keyword schemeFunc count$
 syn keyword schemeFunc cout
 syn keyword schemeFunc cpu-architecture
+syn keyword schemeFunc crc32
 syn keyword schemeFunc create-directory*
 syn keyword schemeFunc create-directory-tree
 syn keyword schemeExtSyntax crypt.bcrypt
@@ -1910,6 +1934,8 @@ syn keyword schemeFunc define-reader-directive
 syn keyword schemeSyntax define-record-type
 syn keyword schemeSyntax define-syntax
 syn keyword schemeSyntax define-values
+syn keyword schemeFunc deflate-string
+syn keyword schemeFunc deflating-port-full-flush
 syn keyword schemeSyntax delay
 syn keyword schemeSyntax delay-force
 syn keyword schemeFunc delete
@@ -2521,6 +2547,8 @@ syn keyword schemeFunc gtake*
 syn keyword schemeFunc gtake-while
 syn keyword schemeSyntax guard
 syn keyword schemeFunc gunfold
+syn keyword schemeFunc gzip-decode-string
+syn keyword schemeFunc gzip-encode-string
 syn keyword schemeFunc has-setter?
 syn keyword schemeFunc has-windows-console?
 syn keyword schemeFunc hash
@@ -2797,6 +2825,8 @@ syn keyword schemeFunc inexact-/
 syn keyword schemeFunc inexact->exact
 syn keyword schemeFunc inexact?
 syn keyword schemeFunc infinite?
+syn keyword schemeFunc inflate-string
+syn keyword schemeFunc inflate-sync
 syn keyword schemeFunc initialize
 syn keyword schemeSyntax inline-stub
 syn keyword schemeFunc input-port-open?
@@ -3327,6 +3357,8 @@ syn keyword schemeFunc odd?
 syn keyword schemeFunc open-binary-input-file
 syn keyword schemeFunc open-binary-output-file
 syn keyword schemeFunc open-coding-aware-port
+syn keyword schemeFunc open-deflating-port
+syn keyword schemeFunc open-inflating-port
 syn keyword schemeFunc open-input-buffered-port
 syn keyword schemeFunc open-input-byte-generator
 syn keyword schemeFunc open-input-byte-list
@@ -3811,6 +3843,7 @@ syn keyword schemeExtSyntax rfc.sha
 syn keyword schemeExtSyntax rfc.sha1
 syn keyword schemeExtSyntax rfc.tls
 syn keyword schemeExtSyntax rfc.uri
+syn keyword schemeExtSyntax rfc.zlib
 syn keyword schemeFunc rfc822-atom
 syn keyword schemeFunc rfc822-date->date
 syn keyword schemeFunc rfc822-dot-atom
@@ -5510,4 +5543,11 @@ syn keyword schemeFunc xml-token?
 syn keyword schemeFunc xsubstring
 syn keyword schemeFunc zero?
 syn keyword schemeFunc zip
+syn keyword schemeFunc zlib-version
+syn keyword schemeFunc zstream-adler32
+syn keyword schemeFunc zstream-data-type
+syn keyword schemeFunc zstream-dictionary-adler32
+syn keyword schemeFunc zstream-params-set!
+syn keyword schemeFunc zstream-total-in
+syn keyword schemeFunc zstream-total-out
 syn keyword schemeFunc ~
