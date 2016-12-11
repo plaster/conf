@@ -32,6 +32,9 @@ $(COLORSDIR)/molokai.vim:
 $(COLORSDIR)/mirodark.vim:
 	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'https://github.com/djjcast/mirodark/raw/master/colors/mirodark.vim'
+$(COLORSDIR)/wombat256mod.vim:
+	$(MAKE) $(COLORSDIR)
+	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=13400'
 $(COLORSDIR)/zenburn.vim:
 	$(MAKE) $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
@@ -62,6 +65,7 @@ FILES=\
 	  $(COLORSDIR)/jellybeans.vim \
 	  $(COLORSDIR)/molokai.vim \
 	  $(COLORSDIR)/mirodark.vim \
+	  $(COLORSDIR)/wombat256mod.vim \
 	  $(COLORSDIR)/zenburn.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
