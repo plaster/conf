@@ -31,6 +31,10 @@ $(BUNDLEDIR)/pathogen:
 	$(MAKE) $(BUNDLEDIR)
 	git clone https://github.com/tpope/vim-pathogen.git $@
 
+$(BUNDLEDIR)/syntastic:
+	$(MAKE) $(BUNDLEDIR)
+	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git $@
+
 $(COLORSDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -79,6 +83,10 @@ $(AUTOLOADDIR)/pathogen.vim: always
 	cd $(BUNDLEDIR)/pathogen && git pull
 	ln -sf $(BUNDLEDIR)/pathogen/autoload/pathogen.vim $@
 
+$(BUNDLEDIR)/syntastic/plugin/syntastic.vim: always
+	$(MAKE) $(BUNDLEDIR)/syntastic
+	cd $(BUNDLEDIR)/syntastic && git pull
+
 FILES=\
 	  $(VIMRC) \
 	  $(COLORSDIR)/inkpot.vim \
@@ -90,5 +98,6 @@ FILES=\
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
 	  $(AUTOLOADDIR)/pathogen.vim \
+	  $(BUNDLEDIR)/syntastic/plugin/syntastic.vim \
 
 install: $(FILES) ### setup vim config
