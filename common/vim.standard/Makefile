@@ -27,7 +27,7 @@ $(BUNDLEDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
 
-$(BUNDLEDIR)/vim-pathogen:
+$(BUNDLEDIR)/pathogen:
 	$(MAKE) $(BUNDLEDIR)
 	git clone https://github.com/tpope/vim-pathogen.git $@
 
@@ -75,9 +75,9 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: always
 
 $(AUTOLOADDIR)/pathogen.vim: always
 	$(MAKE) $(AUTOLOADDIR)
-	$(MAKE) $(BUNDLEDIR)/vim-pathogen
-	cd $(BUNDLEDIR)/vim-pathogen && git pull
-	ln -sf $(BUNDLEDIR)/vim-pathogen/autoload/pathogen.vim $@
+	$(MAKE) $(BUNDLEDIR)/pathogen
+	cd $(BUNDLEDIR)/pathogen && git pull
+	ln -sf $(BUNDLEDIR)/pathogen/autoload/pathogen.vim $@
 
 FILES=\
 	  $(VIMRC) \
