@@ -10,3 +10,6 @@ colorscheme wombat256mod
 if match($TERMCAP, 'Co#256:') == 0 || match($TERMCAP, ':Co#256:') > 0
 	set t_Co=256
 endif
+
+" https://github.com/tpope/vim-pathogen#runtime-path-manipulation
+execute pathogen#infect()

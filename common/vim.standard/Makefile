@@ -27,6 +27,10 @@ $(BUNDLEDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
 
+$(BUNDLEDIR)/vim-pathogen:
+	$(MAKE) $(BUNDLEDIR)
+	git clone https://github.com/tpope/vim-pathogen.git $@
+
 $(COLORSDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -68,6 +72,12 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche.vim: always
 $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: always
 	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
+
+$(AUTOLOADDIR)/pathogen.vim: always
+	$(MAKE) $(AUTOLOADDIR)
+	$(MAKE) $(BUNDLEDIR)/vim-pathogen
+	cd $(BUNDLEDIR)/vim-pathogen && git pull
+	ln -sf $(BUNDLEDIR)/vim-pathogen/autoload/pathogen.vim $@
 
 FILES=\
 	  $(VIMRC) \
