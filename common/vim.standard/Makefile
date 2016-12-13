@@ -5,6 +5,7 @@ help: ### show this help
 
 VIMRC=~/.vimrc
 VIMDIR=~/.vim
+AUTOLOADDIR=$(VIMDIR)/autoload
 COLORSDIR=$(VIMDIR)/colors
 SYNTAXDIR=$(VIMDIR)/syntax
 AFTERDIR=$(VIMDIR)/after
@@ -15,6 +16,10 @@ $(VIMRC): always
 	ln -sf $(CURDIR)/vimrc $@
 
 $(VIMDIR):
+	test -d $@ || mkdir $@
+
+$(AUTOLOADDIR):
+	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
 
 $(COLORSDIR):
