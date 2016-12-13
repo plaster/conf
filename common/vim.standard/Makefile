@@ -6,6 +6,7 @@ help: ### show this help
 VIMRC=~/.vimrc
 VIMDIR=~/.vim
 AUTOLOADDIR=$(VIMDIR)/autoload
+BUNDLEDIR=$(VIMDIR)/bundle
 COLORSDIR=$(VIMDIR)/colors
 SYNTAXDIR=$(VIMDIR)/syntax
 AFTERDIR=$(VIMDIR)/after
@@ -19,6 +20,10 @@ $(VIMDIR):
 	test -d $@ || mkdir $@
 
 $(AUTOLOADDIR):
+	$(MAKE) $(VIMDIR)
+	test -d $@ || mkdir $@
+
+$(BUNDLEDIR):
 	$(MAKE) $(VIMDIR)
 	test -d $@ || mkdir $@
 
@@ -74,5 +79,6 @@ FILES=\
 	  $(COLORSDIR)/zenburn.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
+	  $(AUTOLOADDIR)/pathogen.vim \
 
 install: $(FILES) ### setup vim config
