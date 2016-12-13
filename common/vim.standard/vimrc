@@ -12,4 +12,13 @@ if match($TERMCAP, 'Co#256:') == 0 || match($TERMCAP, ':Co#256:') > 0
 endif
 
 " https://github.com/tpope/vim-pathogen#runtime-path-manipulation
-execute pathogen#infect()
+execute pathogen#infect('bundle/{}')
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
