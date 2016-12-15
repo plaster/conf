@@ -6,6 +6,8 @@ help: ### show this help
 VIMRC=~/.vimrc
 VIMDIR=~/.vim
 AUTOLOADDIR=$(VIMDIR)/autoload
+SYNCHKDIR=$(VIMDIR)/syntax_checkers
+SYNCHKSCHEMEDIR=$(SYNCHKDIR)/scheme
 BUNDLEDIR=$(VIMDIR)/bundle
 COLORSDIR=$(VIMDIR)/colors
 SYNTAXDIR=$(VIMDIR)/syntax
@@ -87,6 +89,16 @@ $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: always
 	$(MAKE) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
 
+$(SYNCHKDIR):
+	$(MAKE) $(VIMDIR)
+	test -d $@ || mkdir $@
+$(SYNCHKSCHEMEDIR):
+	$(MAKE) $(SYNCHKDIR)
+	test -d $@ || mkdir $@
+$(SYNCHKSCHEMEDIR)/gauche.vim: always
+	$(MAKE) $(SYNCHKSCHEMEDIR)
+	ln -sf $(CURDIR)/syntax_checkers/scheme/gauche.vim $@
+
 FILES=\
 	  $(VIMRC) \
 	  $(COLORSDIR)/inkpot.vim \
@@ -99,5 +111,6 @@ FILES=\
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
 	  $(AUTOLOADDIR)/pathogen.vim \
 	  $(BUNDLEDIR)/syntastic/plugin/syntastic.vim \
+	  $(SYNCHKSCHEMEDIR)/gauche.vim \
 
 install: $(FILES) ### setup vim config
