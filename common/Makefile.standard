@@ -5,7 +5,7 @@ help: ### show this help
 
 
 install: ### recursively setup configs
-	make -C vim $@
-	make -C zsh $@
-	make -C screen $@
-	make -C sitelocal $@
+	$(MAKE) -C vim $@
+	$(MAKE) -C zsh $@
+	$(MAKE) -C screen $@
+	$(MAKE) -C sitelocal $@
