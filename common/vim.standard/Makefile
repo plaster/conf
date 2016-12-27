@@ -3,6 +3,8 @@
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
 
+MAKEQ=$(MAKE) --no-print-directory
+
 VIMRC=~/.vimrc
 VIMDIR=~/.vim
 AUTOLOADDIR=$(VIMDIR)/autoload
@@ -22,81 +24,81 @@ $(VIMDIR):
 	test -d $@ || mkdir $@
 
 $(AUTOLOADDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 
 $(BUNDLEDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 
 $(BUNDLEDIR)/pathogen:
-	$(MAKE) $(BUNDLEDIR)
+	$(MAKEQ) $(BUNDLEDIR)
 	git clone https://github.com/tpope/vim-pathogen.git $@
 
 $(BUNDLEDIR)/syntastic:
-	$(MAKE) $(BUNDLEDIR)
+	$(MAKEQ) $(BUNDLEDIR)
 	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git $@
 
 $(COLORSDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 $(COLORSDIR)/inkpot.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'https://raw.githubusercontent.com/ciaranm/inkpot/master/colors/inkpot.vim'
 $(COLORSDIR)/jellybeans.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim'
 $(COLORSDIR)/molokai.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim'
 $(COLORSDIR)/mirodark.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'https://github.com/djjcast/mirodark/raw/master/colors/mirodark.vim'
 $(COLORSDIR)/wombat256mod.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=13400'
 $(COLORSDIR)/zenburn.vim:
-	$(MAKE) $(COLORSDIR)
+	$(MAKEQ) $(COLORSDIR)
 	wget -q -O $@ 'http://www.vim.org/scripts/download_script.php?src_id=15530'
 
 $(SYNTAXDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 
 $(AFTERDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 $(AFTERSYNTAXDIR):
-	$(MAKE) $(AFTERDIR)
+	$(MAKEQ) $(AFTERDIR)
 	test -d $@ || mkdir $@
 $(AFTERSYNTAXSCHEMEDIR):
-	$(MAKE) $(AFTERSYNTAXDIR)
+	$(MAKEQ) $(AFTERSYNTAXDIR)
 	test -d $@ || mkdir $@
 $(AFTERSYNTAXSCHEMEDIR)/gauche.vim: FORCE
-	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
+	$(MAKEQ) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche.vim $@
 $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: FORCE
-	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
+	$(MAKEQ) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
 
 $(AUTOLOADDIR)/pathogen.vim: FORCE
-	$(MAKE) $(AUTOLOADDIR)
-	$(MAKE) $(BUNDLEDIR)/pathogen
+	$(MAKEQ) $(AUTOLOADDIR)
+	$(MAKEQ) $(BUNDLEDIR)/pathogen
 	cd $(BUNDLEDIR)/pathogen && git pull
 	ln -sf $(BUNDLEDIR)/pathogen/autoload/pathogen.vim $@
 
 $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
-	$(MAKE) $(BUNDLEDIR)/syntastic
+	$(MAKEQ) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
 
 $(SYNCHKDIR):
-	$(MAKE) $(VIMDIR)
+	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
 $(SYNCHKSCHEMEDIR):
-	$(MAKE) $(SYNCHKDIR)
+	$(MAKEQ) $(SYNCHKDIR)
 	test -d $@ || mkdir $@
 $(SYNCHKSCHEMEDIR)/gauche.vim: FORCE
-	$(MAKE) $(SYNCHKSCHEMEDIR)
+	$(MAKEQ) $(SYNCHKSCHEMEDIR)
 	ln -sf $(CURDIR)/syntax_checkers/scheme/gauche.vim $@
 
 FILES=\
