@@ -1,4 +1,4 @@
-.PHONY: help install always
+.PHONY: help install FORCE
 
 help: ### show this help
 	@cat $(MAKEFILE_LIST) | perl -nle 'm/\A([^\t][^:]+?):.*?### *(.*)\z/ and printf "%-10s %s\n", $$1, $$2'
@@ -15,7 +15,7 @@ AFTERDIR=$(VIMDIR)/after
 AFTERSYNTAXDIR=$(AFTERDIR)/syntax
 AFTERSYNTAXSCHEMEDIR=$(AFTERSYNTAXDIR)/scheme
 
-$(VIMRC): always
+$(VIMRC): FORCE
 	ln -sf $(CURDIR)/vimrc $@
 
 $(VIMDIR):
@@ -72,20 +72,20 @@ $(AFTERSYNTAXDIR):
 $(AFTERSYNTAXSCHEMEDIR):
 	$(MAKE) $(AFTERSYNTAXDIR)
 	test -d $@ || mkdir $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: always
+$(AFTERSYNTAXSCHEMEDIR)/gauche.vim: FORCE
 	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche.vim $@
-$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: always
+$(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: FORCE
 	$(MAKE) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
 
-$(AUTOLOADDIR)/pathogen.vim: always
+$(AUTOLOADDIR)/pathogen.vim: FORCE
 	$(MAKE) $(AUTOLOADDIR)
 	$(MAKE) $(BUNDLEDIR)/pathogen
 	cd $(BUNDLEDIR)/pathogen && git pull
 	ln -sf $(BUNDLEDIR)/pathogen/autoload/pathogen.vim $@
 
-$(BUNDLEDIR)/syntastic/plugin/syntastic.vim: always
+$(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 	$(MAKE) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
 
@@ -95,7 +95,7 @@ $(SYNCHKDIR):
 $(SYNCHKSCHEMEDIR):
 	$(MAKE) $(SYNCHKDIR)
 	test -d $@ || mkdir $@
-$(SYNCHKSCHEMEDIR)/gauche.vim: always
+$(SYNCHKSCHEMEDIR)/gauche.vim: FORCE
 	$(MAKE) $(SYNCHKSCHEMEDIR)
 	ln -sf $(CURDIR)/syntax_checkers/scheme/gauche.vim $@
 
