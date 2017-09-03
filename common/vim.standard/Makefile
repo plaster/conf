@@ -39,6 +39,10 @@ $(BUNDLEDIR)/syntastic:
 	$(MAKEQ) $(BUNDLEDIR)
 	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git $@
 
+$(BUNDLEDIR)/rust.vim:
+	$(MAKE) $(BUNDLEDIR)
+	git clone --depth=1 https://github.com/rust-lang/rust.vim.git $@
+
 $(COLORSDIR):
 	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -91,6 +95,10 @@ $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
 
+$(BUNDLEDIR)/rust.vim/plugin/rust.vim: always
+	$(MAKE) $(BUNDLEDIR)/rust.vim
+	cd $(BUNDLEDIR)/rust.vim && git pull
+
 $(SYNCHKDIR):
 	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -113,6 +121,7 @@ FILES=\
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
 	  $(AUTOLOADDIR)/pathogen.vim \
 	  $(BUNDLEDIR)/syntastic/plugin/syntastic.vim \
+	  $(BUNDLEDIR)/rust.vim/plugin/rust.vim \
 	  $(SYNCHKSCHEMEDIR)/gauche.vim \
 
 install: $(FILES) ### setup vim config
