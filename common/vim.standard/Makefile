@@ -95,8 +95,8 @@ $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
 
-$(BUNDLEDIR)/rust.vim/plugin/rust.vim: always
-	$(MAKE) $(BUNDLEDIR)/rust.vim
+$(BUNDLEDIR)/rust.vim/plugin/rust.vim: FORCE
+	$(MAKEQ) $(BUNDLEDIR)/rust.vim
 	cd $(BUNDLEDIR)/rust.vim && git pull
 
 $(SYNCHKDIR):
