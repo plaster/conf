@@ -85,12 +85,6 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: FORCE
 	$(MAKEQ) $(AFTERSYNTAXSCHEMEDIR)
 	ln -sf $(CURDIR)/after/syntax/scheme/gauche-keywords.vim $@
 
-$(AUTOLOADDIR)/pathogen.vim: FORCE
-	$(MAKEQ) $(AUTOLOADDIR)
-	$(MAKEQ) $(BUNDLEDIR)/pathogen
-	cd $(BUNDLEDIR)/pathogen && git pull
-	ln -sf $(BUNDLEDIR)/pathogen/autoload/pathogen.vim $@
-
 $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
@@ -119,7 +113,6 @@ FILES=\
 	  $(COLORSDIR)/zenburn.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
-	  $(AUTOLOADDIR)/pathogen.vim \
 	  $(BUNDLEDIR)/syntastic/plugin/syntastic.vim \
 	  $(BUNDLEDIR)/rust.vim/plugin/rust.vim \
 	  $(SYNCHKSCHEMEDIR)/gauche.vim \
