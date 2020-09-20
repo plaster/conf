@@ -43,6 +43,10 @@ $(BUNDLEDIR)/rust.vim:
 	$(MAKE) $(BUNDLEDIR)
 	git clone --depth=1 https://github.com/rust-lang/rust.vim.git $@
 
+$(BUNDLEDIR)/elm-vim:
+	$(MAKE) $(BUNDLEDIR)
+	git clone https://github.com/ElmCast/elm-vim.git $@
+
 $(COLORSDIR):
 	$(MAKEQ) $(VIMDIR)
 	test -d $@ || mkdir $@
@@ -92,6 +96,10 @@ $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 $(BUNDLEDIR)/rust.vim/plugin/rust.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/rust.vim
 	cd $(BUNDLEDIR)/rust.vim && git pull
+
+$(BUNDLEDIR)/elm-vim/plugin/elm.vim: FORCE
+	$(MAKEQ) $(BUNDLEDIR)/elm-vim
+	cd $(BUNDLEDIR)/elm-vim && git pull
 
 $(SYNCHKDIR):
 	$(MAKEQ) $(VIMDIR)
