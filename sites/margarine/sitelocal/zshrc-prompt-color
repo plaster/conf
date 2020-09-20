@@ -11,3 +11,6 @@ then
 	PROMPT_SYM_BEGIN='%{%K{white}%}'
 	PROMPT_SYM_END='%{%k%}'
 fi
+
+alias V="/usr/share/vim/vim81/macros/less.sh"
+alias s="screen -U"
