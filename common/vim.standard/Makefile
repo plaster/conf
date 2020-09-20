@@ -39,13 +39,17 @@ $(BUNDLEDIR)/syntastic:
 	$(MAKEQ) $(BUNDLEDIR)
 	git clone --depth=1 https://github.com/vim-syntastic/syntastic.git $@
 
+$(BUNDLEDIR)/ale:
+	$(MAKEQ) $(BUNDLEDIR)
+	git clone --depth 1 https://github.com/dense-analysis/ale.git $@
+
 $(BUNDLEDIR)/rust.vim:
 	$(MAKE) $(BUNDLEDIR)
 	git clone --depth=1 https://github.com/rust-lang/rust.vim.git $@
 
 $(BUNDLEDIR)/elm-vim:
 	$(MAKE) $(BUNDLEDIR)
-	git clone https://github.com/ElmCast/elm-vim.git $@
+	git clone --depth=1 https://github.com/ElmCast/elm-vim.git $@
 
 $(COLORSDIR):
 	$(MAKEQ) $(VIMDIR)
@@ -92,6 +96,10 @@ $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim: FORCE
 $(BUNDLEDIR)/syntastic/plugin/syntastic.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/syntastic
 	cd $(BUNDLEDIR)/syntastic && git pull
+
+$(BUNDLEDIR)/ale/plugin/ale.vim: FORCE
+	$(MAKEQ) $(BUNDLEDIR)/ale
+	cd $(BUNDLEDIR)/ale && git pull
 
 $(BUNDLEDIR)/rust.vim/plugin/rust.vim: FORCE
 	$(MAKEQ) $(BUNDLEDIR)/rust.vim
