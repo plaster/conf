@@ -129,6 +129,7 @@ FILES=\
 	  $(COLORSDIR)/zenburn.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche.vim \
 	  $(AFTERSYNTAXSCHEMEDIR)/gauche-keywords.vim \
+	  $(BUNDLEDIR)/ale/plugin/ale.vim \
 	  $(BUNDLEDIR)/syntastic/plugin/syntastic.vim \
 	  $(BUNDLEDIR)/rust.vim/plugin/rust.vim \
 	  $(SYNCHKSCHEMEDIR)/gauche.vim \
