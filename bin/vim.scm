@@ -103,7 +103,7 @@
       (let [[ kw-type
               (cond
                 [ (procedure? v)
-                 'schemeFunc
+                 'schemeFunction
                  ]
                 [ (or (is-a? v <macro>)
                       (is-a? v <syntax>))
