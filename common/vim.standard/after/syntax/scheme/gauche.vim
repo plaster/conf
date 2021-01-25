@@ -29,6 +29,7 @@ syn region schemeStrucRestricted matchgroup=Delimiter start="#c64(" matchgroup=D
 syn region schemeStrucRestricted matchgroup=Delimiter start="#c128(" matchgroup=Delimiter end=")" contains=ALLBUT,schemeStruc,schemeSyntax,schemeFunc
 
 hi def link schemeRegexp     schemeString
+hi def link schemeExtSyntax  schemeSyntax
 
 " additonal lispwords
 setl lw+=receive
