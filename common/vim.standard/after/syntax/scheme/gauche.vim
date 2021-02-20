@@ -32,4 +32,4 @@ hi def link schemeRegexp     schemeString
 hi def link schemeExtSyntax  schemeSpecialSyntax
 
 " additonal lispwords
-setl lw+=receive
+setl lw+=receive,rlet1,while,until
